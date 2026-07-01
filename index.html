@@ -41,12 +41,12 @@
     }
 
     .reveal h1 {
-      font-size: 2.2em;
+      font-size: 1.8em;
       line-height: 1.25;
     }
     
     .reveal h2 {
-      font-size: 1.6em;
+      font-size: 1.4em;
       color: var(--bni-red);
       margin-bottom: 0.8em;
       position: relative;
@@ -96,8 +96,9 @@
       box-shadow: 0 4px 10px rgba(209, 32, 49, 0.25);
     }
 
+    /* 縮小 2 級 (由原本 1.9em 縮小至 1.5em) */
     .title-main {
-      font-size: 1.9em !important;
+      font-size: 1.5em !important;
       line-height: 1.35;
       margin-bottom: 20px;
       font-weight: 900;
@@ -111,7 +112,7 @@
     }
 
     .title-desc {
-      font-size: 0.65em;
+      font-size: 0.6em;
       color: var(--text-muted);
       margin-top: 40px;
       font-weight: 500;
@@ -288,9 +289,9 @@
 <div class="reveal">
   <div class="slides">
 
-    <!-- 第一頁：封面 (移除 opacity，即 100% 原始色彩背景) -->
+    <!-- 第一頁：封面 (改為 contain 確保背景底圖不被截掉裁切) -->
     <section data-background-image="bnilogo.png"
-             data-background-size="cover"
+             data-background-size="contain"
              data-background-position="center">
       <div class="title-container">
         <div class="title-badge">重要通知 · 主題簡報主講人</div>
@@ -302,9 +303,9 @@
       </div>
     </section>
 
-    <!-- 第二頁：EDM 資訊收集 (移除 opacity，即 100% 原始色彩背景) -->
+    <!-- 第二頁：EDM 資訊收集 (改為 contain 確保背景底圖不被截掉裁切) -->
     <section data-background-image="bnilogo.png"
-             data-background-size="cover"
+             data-background-size="contain"
              data-background-position="center">
       <h2>請協助提供 EDM 內容如下</h2>
       
@@ -341,9 +342,9 @@
       </div>
     </section>
 
-    <!-- 第三頁：預演與準備清單 (移除 opacity，即 100% 原始色彩背景) -->
+    <!-- 第三頁：預演與準備清單 (改為 contain 確保背景底圖不被截掉裁切) -->
     <section data-background-image="bnilogo.png"
-             data-background-size="cover"
+             data-background-size="contain"
              data-background-position="center">
       <h2>簡報預演及準備事項</h2>
       
