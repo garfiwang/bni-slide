@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BNI 主題簡報主講人重要通知</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/simple.css" />
+  <!-- 載入 Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* === 全域變數與亮色品牌設定 === */
+    :root {
+      --bni-red:     #d12031;
+      --bni-gold:    #b67b12;
+      --text-dark:   #1a2530;
+      --text-muted:  #5a6e7f;
+      --bg-card:     #f8fafc;
+      --border-card: #e2e8f0;
+      --accent:      #d12031;
+      --accent2:     #1a2530;
+    }
+
+    /* === Reveal.js 樣式覆蓋 === */
+    .reveal {
+      font-family: 'Outfit', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
+      background-color: #ffffff;
+    }
+    
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+      font-weight: 900;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+      text-transform: none;
+    }
+
+    .reveal h1 {
+      font-size: 2.2em;
+      line-height: 1.25;
+    }
+    
+    .reveal h2 {
+      font-size: 1.6em;
+      color: var(--bni-red);
+      margin-bottom: 0.8em;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* 標題下方小裝飾線 */
+    .reveal h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--bni-red);
+      border-radius: 2px;
+    }
+
+    .reveal .progress {
+      height: 6px;
+      color: var(--bni-red);
+    }
+
+    .reveal .controls {
+      color: var(--bni-red);
+    }
+
+    /* === 投影片特效與元件 === */
+
+    /* 1. 封面視覺 */
+    .title-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .title-badge {
+      display: inline-block;
+      background-color: var(--bni-red);
+      color: #ffffff;
+      font-size: 0.45em;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 30px;
+      letter-spacing: 0.1em;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 10px rgba(209, 32, 49, 0.25);
+    }
+
+    .title-main {
+      font-size: 1.9em !important;
+      line-height: 1.35;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+    
+    .title-main span {
+      color: var(--bni-red);
+      display: block;
+      margin-top: 15px;
+      font-size: 1.15em;
+    }
+
+    .title-desc {
+      font-size: 0.65em;
+      color: var(--text-muted);
+      margin-top: 40px;
+      font-weight: 500;
+    }
+
+    /* 2. EDM 卡片網格 */
+    .edm-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+      margin-top: 1.2em;
+      margin-bottom: 1.2em;
+    }
+
+    .edm-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 24px 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .edm-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--bni-red);
+      opacity: 0.7;
+    }
+
+    .edm-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+      border-color: rgba(209, 32, 49, 0.3);
+    }
+
+    .card-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6em;
+      font-weight: 800;
+      color: var(--bni-red);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 0.55em;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.4em;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* 截止日期通知框 */
+    .deadline-box {
+      background: rgba(209, 32, 49, 0.04);
+      border: 2px dashed rgba(209, 32, 49, 0.4);
+      border-radius: 10px;
+      padding: 15px 30px;
+      margin-top: 1.2em;
+      font-size: 0.55em;
+      color: var(--bni-red);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    /* 3. 預演清單與按鈕 */
+    .checklist-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 850px;
+      margin: 0.8em auto;
+      text-align: left;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border-left: 5px solid var(--bni-red);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 20px;
+      font-size: 0.55em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .checklist-item.accent-gold {
+      border-left-color: var(--bni-gold);
+    }
+
+    .checklist-num {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.15em;
+      color: var(--text-dark);
+      margin-right: 15px;
+      min-width: 24px;
+    }
+
+    .checklist-text {
+      flex-grow: 1;
+      font-weight: 500;
+    }
+    
+    .checklist-tag {
+      font-size: 0.75em;
+      padding: 3px 8px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 4px;
+      color: var(--text-muted);
+      margin-left: 10px;
+      font-weight: 700;
+    }
+
+    .cta-container {
+      margin-top: 1.5em;
+    }
+
+    /* 按鈕樣式 */
+    .btn-register {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bni-red);
+      color: #ffffff !important;
+      font-weight: 700;
+      font-size: 0.6em;
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none !important;
+      box-shadow: 0 6px 20px rgba(209, 32, 49, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-register:hover {
+      background: #b51726;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(209, 32, 49, 0.4);
+    }
+
+    .footer-note {
+      font-size: 0.4em;
+      color: var(--text-muted);
+      margin-top: 1.2em;
+      font-weight: 500;
+    }
+
+    /* 動畫效果 */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(209, 32, 49, 0.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 第一頁：封面 (滿版，不透明度 0.12) -->
+    <section data-background-image="bnilogo.png"
+             data-background-opacity="0.12"
+             data-background-size="cover"
+             data-background-position="center">
+      <div class="title-container">
+        <div class="title-badge">重要通知 · 主題簡報主講人</div>
+        <h1 class="title-main">
+          請主題簡報主講人關注
+          <span>"五分鐘簡報預演" 的群組</span>
+        </h1>
+        <p class="title-desc">請左右滑動或點擊方向鍵查看詳細通知內容 ➔</p>
+      </div>
+    </section>
+
+    <!-- 第二頁：EDM 資訊收集 (滿版，不透明度 0.05) -->
+    <section data-background-image="bnilogo.png"
+             data-background-opacity="0.05"
+             data-background-size="cover"
+             data-background-position="center">
+      <h2>請協助提供 EDM 內容如下</h2>
+      
+      <div class="edm-grid">
+        <div class="edm-card fragment" data-fragment-index="1">
+          <div class="card-num">01</div>
+          <div class="card-title">行業別 + 姓名</div>
+          <div class="card-desc">明確的專業行業定位與您的姓名</div>
+        </div>
+        <div class="edm-card fragment" data-fragment-index="2">
+          <div class="card-num">02</div>
+          <div class="card-title">簡報標題</div>
+          <div class="card-desc">精簡且吸引人的主題 (10字內)</div>
+        </div>
+        <div class="edm-card fragment" data-fragment-index="3">
+          <div class="card-num">03</div>
+          <div class="card-title">形象照</div>
+          <div class="card-desc">高畫質專業個人形象照</div>
+        </div>
+        <div class="edm-card fragment" data-fragment-index="4">
+          <div class="card-num">04</div>
+          <div class="card-title">想要合作對象</div>
+          <div class="card-desc">您希望鏈接引薦的理想合作對象</div>
+        </div>
+        <div class="edm-card fragment" data-fragment-index="5">
+          <div class="card-num">05</div>
+          <div class="card-title">簡報日期</div>
+          <div class="card-desc">確認您的正式主題簡報日期</div>
+        </div>
+      </div>
+
+      <div class="deadline-box fragment" data-fragment-index="6">
+        🔔 以上資料請於 <span style="text-decoration: underline; font-size: 1.1em;">??/??</span> 前提供呦～感謝您 🙏🙏🙏
+      </div>
+    </section>
+
+    <!-- 第三頁：預演與準備清單 (滿版，不透明度 0.05) -->
+    <section data-background-image="bnilogo.png"
+             data-background-opacity="0.05"
+             data-background-size="cover"
+             data-background-position="center">
+      <h2>簡報預演及準備事項</h2>
+      
+      <div class="checklist-container">
+        <div class="checklist-item fragment">
+          <span class="checklist-num">06</span>
+          <span class="checklist-text">簡報預演：請自行上網登記預演時間</span>
+          <span class="checklist-tag">自選時間</span>
+        </div>
+        <div class="checklist-item fragment">
+          <span class="checklist-num">07</span>
+          <span class="checklist-text">抽獎禮（圖片）：請於預演時提供</span>
+          <span class="checklist-tag">預演時提交</span>
+        </div>
+        <div class="checklist-item fragment">
+          <span class="checklist-num">08</span>
+          <span class="checklist-text">兩個來賓名單：請於預演時提供</span>
+          <span class="checklist-tag">預演時提交</span>
+        </div>
+        <div class="checklist-item accent-gold fragment">
+          <span class="checklist-num">09</span>
+          <span class="checklist-text">備註說明：會協助您加入 "主題簡報預演群組" 再請留意</span>
+          <span class="checklist-tag">請留意訊息</span>
+        </div>
+      </div>
+
+      <!-- 登記按鈕 -->
+      <div class="cta-container fragment">
+        <a href="https://mq.gy/2zoC1n8" target="_blank" class="btn-register">
+          <span>📅 立即上網登記預演時間</span>
+        </a>
+      </div>
+
+      <div class="footer-note fragment">
+        ⚠️ 字數再請幫我們注意一下 · 感謝您的配合
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,
+    progress: true,
+    controls: true,
+    slideNumber: 'c/t',
+    plugins: []
+  });
+</script>
+</body>
+</html>
